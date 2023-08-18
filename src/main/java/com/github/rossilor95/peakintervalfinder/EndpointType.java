@@ -1,4 +1,4 @@
-package com.github.rossilor95.eventspeakfinder;
+package com.github.rossilor95.peakintervalfinder;
 
 /**
  * Enum representing the type of interval endpoint.

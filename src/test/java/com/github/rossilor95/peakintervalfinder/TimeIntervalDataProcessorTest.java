@@ -1,4 +1,4 @@
-package com.github.rossilor95.eventspeakfinder;
+package com.github.rossilor95.peakintervalfinder;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

@@ -1,4 +1,4 @@
-package com.github.rossilor95.eventspeakfinder;
+package com.github.rossilor95.peakintervalfinder;
 
 import java.time.LocalTime;
 
