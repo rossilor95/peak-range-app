@@ -3,7 +3,7 @@ package com.github.rossilor95.eventspeakfinder;
 import java.time.LocalTime;
 
 /**
- * Represents an endpoint of a time interval.
+ * Represents one endpoint of a time interval (start or end).
  */
-public record IntervalEndpoint(LocalTime timeStamp, EndpointType type) {
+public record IntervalEndpoint(LocalTime time, EndpointType type) {
 }
