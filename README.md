@@ -25,7 +25,7 @@ All the data related to a single day of anomalous events measurements are stored
 13:33:44,13:02:11 # Event 4
 ```
 
-Note that in the actual data files there are no comments. An example of data file can be found [here](src/test/resources/test.txt).
+Note that in the actual data files there are no comments. An example of data file can be found [here](src/test/resources/data/test.txt).
 
 The scientists want to write an application that can find the time interval with the maximum occurrence of anomalous events during a given day. We call this interval *Events Peak*. 
 
