@@ -1,4 +1,4 @@
-# Events Peak Finder
+# Peak Interval Finder
 
 ## Introduction
 This application solves a famous algorithmic problem in a naive but (in my opinion) fun and understandable way. Relevant Stack Overflow threads:
