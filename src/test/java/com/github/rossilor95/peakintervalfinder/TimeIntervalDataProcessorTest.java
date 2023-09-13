@@ -18,7 +18,7 @@ public class TimeIntervalDataProcessorTest {
     private static final String NOT_EXISTING_FILE_MESSAGE = "File does not exist";
     private static final String EMPTY_FILE_MESSAGE = "Empty file provided.";
 
-    private final TimeIntervalDataProcessor timeIntervalDataProcessor = new TimeIntervalDataProcessor();
+    private final TimeIntervalDataProcessor underTest = new TimeIntervalDataProcessor();
 
     @Test
     void shouldThrowWhenTryingToProcessNotExistingFile() {
@@ -26,7 +26,7 @@ public class TimeIntervalDataProcessorTest {
 
         // WHEN
         FileNotFoundException exception =
-                assertThrows(FileNotFoundException.class, () -> timeIntervalDataProcessor.processDataFile(NOT_EXISTING_FILE));
+                assertThrows(FileNotFoundException.class, () -> underTest.processDataFile(NOT_EXISTING_FILE));
 
         // THEN
         assertTrue(exception.getMessage().contains(NOT_EXISTING_FILE_MESSAGE));
@@ -38,7 +38,7 @@ public class TimeIntervalDataProcessorTest {
 
         // WHEN
         IOException exception =
-                assertThrows(IOException.class, () -> timeIntervalDataProcessor.processDataFile(EMPTY_FILE));
+                assertThrows(IOException.class, () -> underTest.processDataFile(EMPTY_FILE));
 
         // THEN
         assertTrue(exception.getMessage().contains(EMPTY_FILE_MESSAGE));
@@ -61,7 +61,7 @@ public class TimeIntervalDataProcessorTest {
         );
 
         // WHEN
-        List<IntervalEndpoint> actual = timeIntervalDataProcessor.processDataFile(TEST_FILE);
+        List<IntervalEndpoint> actual = underTest.processDataFile(TEST_FILE);
 
         // THEN
         assertEquals(expected, actual);
