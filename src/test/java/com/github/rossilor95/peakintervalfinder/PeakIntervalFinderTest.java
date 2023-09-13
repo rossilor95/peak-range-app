@@ -25,7 +25,7 @@ class PeakIntervalFinderTest {
     private PeakIntervalFinder underTest;
 
     @Test
-    void shouldFindMultiplePeakIntervalsWhenPresentInFilepath() throws IOException {
+    void shouldFindMultiplePeakIntervalsWhenPresentInData() throws IOException {
         // GIVEN
         List<TimeInterval> expected = List.of(
                 new TimeInterval(LocalTime.of(13, 13, 0), LocalTime.of(13, 23, 55)),
