@@ -20,7 +20,7 @@ class TimeIntervalDataProcessor {
      *
      * @param filePath The path to the file containing time interval strings in the format "{@code start_time,end_time}"
      * @return A list of interval endpoints sorted in ascending order by time
-     * @throws IOException If an I/O error occurs while reading the provided file or if the provided file is empty
+     * @throws IOException           If an I/O error occurs while reading the provided file or if the provided file is empty
      * @throws FileNotFoundException If the file does not exist
      */
     public List<IntervalEndpoint> processDataFile(String filePath) throws IOException {

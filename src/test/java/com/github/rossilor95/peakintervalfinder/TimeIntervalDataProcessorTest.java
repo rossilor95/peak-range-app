@@ -26,7 +26,7 @@ public class TimeIntervalDataProcessorTest {
 
         // WHEN
         FileNotFoundException exception =
-            assertThrows(FileNotFoundException.class, () -> timeIntervalDataProcessor.processDataFile(NOT_EXISTING_FILE));
+                assertThrows(FileNotFoundException.class, () -> timeIntervalDataProcessor.processDataFile(NOT_EXISTING_FILE));
 
         // THEN
         assertTrue(exception.getMessage().contains(NOT_EXISTING_FILE_MESSAGE));
@@ -38,7 +38,7 @@ public class TimeIntervalDataProcessorTest {
 
         // WHEN
         IOException exception =
-            assertThrows(IOException.class, () -> timeIntervalDataProcessor.processDataFile(EMPTY_FILE));
+                assertThrows(IOException.class, () -> timeIntervalDataProcessor.processDataFile(EMPTY_FILE));
 
         // THEN
         assertTrue(exception.getMessage().contains(EMPTY_FILE_MESSAGE));
@@ -48,16 +48,16 @@ public class TimeIntervalDataProcessorTest {
     void shouldProperlyProcessTimeIntervalDataWhenFileIsValid() throws IOException {
         // GIVEN an instance of TimeIntervalDataProcessor and
         List<IntervalEndpoint> expected = List.of(
-            new IntervalEndpoint(LocalTime.of(12, 20, 5), EndpointType.START),
-            new IntervalEndpoint(LocalTime.of(12, 30, 0), EndpointType.START),
-            new IntervalEndpoint(LocalTime.of(12, 33, 44), EndpointType.START),
-            new IntervalEndpoint(LocalTime.of(12, 58, 23), EndpointType.END),
-            new IntervalEndpoint(LocalTime.of(13, 15, 40), EndpointType.END),
-            new IntervalEndpoint(LocalTime.of(15, 2, 11), EndpointType.END),
-            new IntervalEndpoint(LocalTime.of(15, 20, 0), EndpointType.START),
-            new IntervalEndpoint(LocalTime.of(16, 0, 0), EndpointType.START),
-            new IntervalEndpoint(LocalTime.of(16, 5, 30), EndpointType.END),
-            new IntervalEndpoint(LocalTime.of(16, 30, 45), EndpointType.END)
+                new IntervalEndpoint(LocalTime.of(12, 20, 5), EndpointType.START),
+                new IntervalEndpoint(LocalTime.of(12, 30, 0), EndpointType.START),
+                new IntervalEndpoint(LocalTime.of(12, 33, 44), EndpointType.START),
+                new IntervalEndpoint(LocalTime.of(12, 58, 23), EndpointType.END),
+                new IntervalEndpoint(LocalTime.of(13, 15, 40), EndpointType.END),
+                new IntervalEndpoint(LocalTime.of(15, 2, 11), EndpointType.END),
+                new IntervalEndpoint(LocalTime.of(15, 20, 0), EndpointType.START),
+                new IntervalEndpoint(LocalTime.of(16, 0, 0), EndpointType.START),
+                new IntervalEndpoint(LocalTime.of(16, 5, 30), EndpointType.END),
+                new IntervalEndpoint(LocalTime.of(16, 30, 45), EndpointType.END)
         );
 
         // WHEN
