@@ -2,6 +2,7 @@ package com.github.rossilor95.peakintervalfinder;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,7 +31,9 @@ public class PeakIntervalFinder {
     public List<TimeInterval> findPeakIntervals(String filePath) throws IOException {
         List<IntervalEndpoint> endpoints = timeIntervalDataProcessor.processDataFile(filePath);
         int[] eventCount = findEventCount(endpoints);
-        int maxEventCount = findMax(eventCount);
+        int maxEventCount = Arrays.stream(eventCount)
+                .max()
+                .orElseThrow(() -> new RuntimeException("No max event count found"));
         LOG.log(Level.INFO, "Max event count: " + maxEventCount);
         List<Integer> maxIndices = findMaxIndices(eventCount, maxEventCount);
         return findPeakIntervals(endpoints, maxIndices);
@@ -40,8 +43,10 @@ public class PeakIntervalFinder {
         int[] eventCount = new int[endpoints.size()];
         eventCount[0] = endpoints.get(0).type() == EndpointType.START ? 1 : 0;
         for (int i = 1; i < endpoints.size(); i++) {
-            eventCount[i] =
-                    endpoints.get(i).type() == EndpointType.START ? eventCount[i - 1] + 1 : eventCount[i - 1] - 1;
+            int previousEventCount = eventCount[i - 1];
+            eventCount[i] = endpoints.get(i).type() == EndpointType.START
+                    ? previousEventCount + 1
+                    : previousEventCount - 1;
         }
         return eventCount;
     }
@@ -63,15 +68,5 @@ public class PeakIntervalFinder {
             peakIntervals.add(peakInterval);
         }
         return peakIntervals;
-    }
-
-    private int findMax(int[] arr) {
-        int max = arr[0];
-        for (int i = 1; i < arr.length; i++) {
-            if (arr[i] > max) {
-                max = arr[i];
-            }
-        }
-        return max;
     }
 }

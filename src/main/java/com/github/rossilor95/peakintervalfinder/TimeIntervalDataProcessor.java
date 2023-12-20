@@ -55,6 +55,8 @@ class TimeIntervalDataProcessor {
     }
 
     private List<IntervalEndpoint> sortEndpoints(List<IntervalEndpoint> endpoints) {
-        return endpoints.stream().sorted(Comparator.comparing(IntervalEndpoint::time)).toList();
+        return endpoints.stream()
+                .sorted(Comparator.comparing(IntervalEndpoint::time))
+                .toList();
     }
 }
