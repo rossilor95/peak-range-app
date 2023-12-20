@@ -52,3 +52,24 @@ In light of this, here's an overview of the algorithm:
 5. _Construct peak intervals objects_: Finally, the algorithm constructs `TimeInterval` objects based on the identified endpoints and returns a list of peak intervals.
 
 The result is a list of peak intervals, each representing a time interval with the highest occurrence of anomalous events.
+
+
+## How to use
+To clone and run this application, you'll need Git and Java 21 installed on your computer. We use Gradle Wrapper to build and run the application, so no need to have Gradle on your local machine. From your command line:
+
+```shell
+# Clone this repository
+$ git clone https://github.com/rossilor95/peak-interval-finder.git
+
+# Go into the repository
+$ cd peak-interval-finder
+
+# Make gradlew executable
+$ chmod +x gradlew
+
+# Install dependencies
+$ ./gradlew build
+
+# Run the app 
+$ ./gradlew run --args="your_data_file.txt"
+```
