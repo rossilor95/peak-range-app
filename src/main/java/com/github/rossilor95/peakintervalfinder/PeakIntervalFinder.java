@@ -3,8 +3,11 @@ package com.github.rossilor95.peakintervalfinder;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PeakIntervalFinder {
+    private static final Logger LOG = Logger.getLogger(PeakIntervalFinder.class.getName());
     private final TimeIntervalDataProcessor timeIntervalDataProcessor;
 
     PeakIntervalFinder(TimeIntervalDataProcessor timeIntervalDataProcessor) {
@@ -21,13 +24,14 @@ public class PeakIntervalFinder {
         final PeakIntervalFinder peakIntervalFinder = new PeakIntervalFinder(timeIntervalDataProcessor);
         List<TimeInterval> peakIntervals = peakIntervalFinder.findPeakIntervals(filePath);
 
-        System.out.println(peakIntervals);
+        LOG.log(Level.INFO, "Peak Interval(s) found: " + peakIntervals.toString());
     }
 
     public List<TimeInterval> findPeakIntervals(String filePath) throws IOException {
         List<IntervalEndpoint> endpoints = timeIntervalDataProcessor.processDataFile(filePath);
         int[] eventCount = findEventCount(endpoints);
         int maxEventCount = findMax(eventCount);
+        LOG.log(Level.INFO, "Max event count: " + maxEventCount);
         List<Integer> maxIndices = findMaxIndices(eventCount, maxEventCount);
         return findPeakIntervals(endpoints, maxIndices);
     }

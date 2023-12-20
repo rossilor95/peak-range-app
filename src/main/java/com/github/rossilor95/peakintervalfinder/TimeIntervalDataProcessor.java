@@ -9,11 +9,14 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Utility class for processing time interval data files.
  */
 class TimeIntervalDataProcessor {
+    private static final Logger LOG = Logger.getLogger(TimeIntervalDataProcessor.class.getName());
 
     /**
      * Processes time interval data from the specified file.
@@ -36,7 +39,7 @@ class TimeIntervalDataProcessor {
         if (Files.size(path) == 0) {
             throw new IOException("Empty file provided.");
         }
-        System.out.println("Reading time intervals from: " + path.toAbsolutePath());
+        LOG.log(Level.INFO ,"Reading time intervals from: " + path.toAbsolutePath());
         List<String> intervals = Files.readAllLines(path);
         return extractEndpoints(intervals);
     }
