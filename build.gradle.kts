@@ -21,6 +21,12 @@ application {
     mainClass.set("com.github.rossilor95.peakintervalfinder.PeakIntervalFinder")
 }
 
+tasks.jar {
+    manifest.attributes(
+        "Main-Class" to "com.github.rossilor95.peakintervalfinder.PeakIntervalFinder"
+    )
+}
+
 tasks.test {
     useJUnitPlatform()
 }
