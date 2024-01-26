@@ -14,8 +14,8 @@ USER root
 RUN adduser --disabled-password app_user
 RUN mkdir $APP_HOME
 RUN chown --recursive app_user /home/app_user
-COPY --from=build /home/gradle/src/build/libs/*.jar $APP_HOME/epf.jar
+COPY --from=build /home/gradle/src/build/libs/*.jar $APP_HOME/pif.jar
 
 USER app_user
 WORKDIR $APP_HOME
-ENTRYPOINT ["bash"] 
+ENTRYPOINT ["java", "-jar", "pif.jar"] 
