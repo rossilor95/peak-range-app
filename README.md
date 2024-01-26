@@ -55,6 +55,8 @@ The result is a list of peak intervals, each representing a time interval with t
 
 
 ## How to use
+
+### Local Installation
 To clone and run this application, you'll need Git and Java 21 installed on your computer. We use Gradle Wrapper to build and run the application, so no need to have Gradle on your local machine. From your command line:
 
 ```shell
@@ -72,4 +74,15 @@ $ ./gradlew build
 
 # Run the app 
 $ ./gradlew run --args="your_data_file.txt"
+```
+
+### Docker
+First, make sure that the Docker engine is running. Then, from your command line:
+
+```shell
+# Build the image from the project's Dockerfile
+$ docker build --tag pif .
+
+# Run a new container from the PIF image 
+$ docker run -v "absolute_path_to_your_data.txt":"/app/data.txt" pif:latest /app/data.txt
 ```
