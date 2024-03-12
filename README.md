@@ -84,5 +84,7 @@ First, make sure that the Docker engine is running. Then, from your command line
 $ docker build --tag pif .
 
 # Run a new container from the PIF image 
-$ docker run -v "absolute_path_to_your_data.txt":"/app/data.txt" pif:latest /app/data.txt
+$ docker run -it --mount type=bind,src=/absolute/path/to/your/data,target=/app/data.txt pif:latest /app/data.txt
 ```
+
+
