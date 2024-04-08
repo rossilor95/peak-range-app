@@ -12,6 +12,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static com.github.rossilor95.peakintervalfinder.IntervalEndpoint.Type.END;
+import static com.github.rossilor95.peakintervalfinder.IntervalEndpoint.Type.START;
+
 /**
  * Utility class for processing time interval data files.
  */
@@ -39,7 +42,7 @@ class TimeIntervalDataProcessor {
         if (Files.size(path) == 0) {
             throw new IOException("Empty file provided.");
         }
-        LOG.log(Level.INFO ,"Reading time intervals from: " + path.toAbsolutePath());
+        LOG.log(Level.INFO, "Reading time intervals from: " + path.toAbsolutePath());
         List<String> intervals = Files.readAllLines(path);
         return extractEndpoints(intervals);
     }
@@ -48,8 +51,8 @@ class TimeIntervalDataProcessor {
         List<IntervalEndpoint> endpoints = new ArrayList<>();
         for (String interval : intervals) {
             String[] parts = interval.split(",");
-            endpoints.add(new IntervalEndpoint(LocalTime.parse(parts[0]), EndpointType.START));
-            endpoints.add(new IntervalEndpoint(LocalTime.parse(parts[1]), EndpointType.END));
+            endpoints.add(new IntervalEndpoint(LocalTime.parse(parts[0]), START));
+            endpoints.add(new IntervalEndpoint(LocalTime.parse(parts[1]), END));
         }
         return endpoints;
     }

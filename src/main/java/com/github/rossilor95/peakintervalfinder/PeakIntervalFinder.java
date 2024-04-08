@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static com.github.rossilor95.peakintervalfinder.IntervalEndpoint.Type.START;
+
 public class PeakIntervalFinder {
     private static final Logger LOG = Logger.getLogger(PeakIntervalFinder.class.getName());
     private final TimeIntervalDataProcessor timeIntervalDataProcessor;
@@ -41,10 +43,10 @@ public class PeakIntervalFinder {
 
     private int[] findEventCount(List<IntervalEndpoint> endpoints) {
         int[] eventCount = new int[endpoints.size()];
-        eventCount[0] = endpoints.get(0).type() == EndpointType.START ? 1 : 0;
+        eventCount[0] = endpoints.getFirst().type() == START ? 1 : 0;
         for (int i = 1; i < endpoints.size(); i++) {
             int previousEventCount = eventCount[i - 1];
-            eventCount[i] = endpoints.get(i).type() == EndpointType.START
+            eventCount[i] = endpoints.get(i).type() == START
                     ? previousEventCount + 1
                     : previousEventCount - 1;
         }
