@@ -81,10 +81,12 @@ First, make sure that the Docker engine is running. Then, from your command line
 
 ```shell
 # Build the image from the project's Dockerfile
-$ docker build --tag pif .
+$ docker build --tag find-peak-range .
 
-# Run a new container from the PIF image 
-$ docker run -it --mount type=bind,src=/absolute/path/to/your/data,target=/app/data.txt pif:latest /app/data.txt
+# Run a new container from the 'find-peak-range' image 
+$ docker run -it \
+  --mount type=bind,src=/absolute/path/to/your/data,target=/app/data.txt \
+  find-peak-range:latest /app/data.txt
 ```
 
 
