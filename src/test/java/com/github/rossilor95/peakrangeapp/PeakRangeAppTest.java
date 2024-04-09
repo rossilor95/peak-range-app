@@ -14,38 +14,49 @@ import static com.github.rossilor95.peakrangeapp.IntervalEndpoint.Type.END;
 import static com.github.rossilor95.peakrangeapp.IntervalEndpoint.Type.START;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.BDDMockito.then;
 
 @ExtendWith(MockitoExtension.class)
 class PeakRangeAppTest {
-    private static final String FILEPATH = "test_filepath";
+    private static final String FILE_PATH = "test_filepath";
 
-    @Mock
-    private TimeIntervalDataProcessor timeIntervalDataProcessor;
+    @Mock private TimeIntervalDataProcessor timeIntervalDataProcessor;
 
-    @InjectMocks
-    private PeakRangeApp underTest;
+    @InjectMocks private PeakRangeApp underTest;
+
+    @Test
+    void shouldFindSinglePeakIntervalWhenPresentInData() throws IOException {
+        // GIVEN
+        List<TimeInterval> expected = List.of(new TimeInterval(LocalTime.of(5, 20, 40), LocalTime.of(5, 48, 32)));
+        List<IntervalEndpoint> endpoints = List.of(new IntervalEndpoint(LocalTime.of(5, 7, 16), START),
+                                                   new IntervalEndpoint(LocalTime.of(5, 13, 29), START),
+                                                   new IntervalEndpoint(LocalTime.of(5, 20, 40), START),
+                                                   new IntervalEndpoint(LocalTime.of(5, 48, 32), END),
+                                                   new IntervalEndpoint(LocalTime.of(5, 55, 7), END),
+                                                   new IntervalEndpoint(LocalTime.of(6, 0, 56), END));
+        given(timeIntervalDataProcessor.processDataFile(FILE_PATH)).willReturn(endpoints);
+
+        // WHEN
+        List<TimeInterval> actual = underTest.findPeakRanges(FILE_PATH);
+
+        // THEN
+        assertEquals(expected, actual);
+    }
 
     @Test
     void shouldFindMultiplePeakIntervalsWhenPresentInData() throws IOException {
         // GIVEN
-        List<TimeInterval> expected = List.of(
-                new TimeInterval(LocalTime.of(13, 13, 0), LocalTime.of(13, 23, 55)),
-                new TimeInterval(LocalTime.of(13, 58, 10), LocalTime.of(14, 2, 1))
-        );
-        List<IntervalEndpoint> endpoints = List.of(
-                new IntervalEndpoint(LocalTime.of(13, 13, 0), START),
-                new IntervalEndpoint(LocalTime.of(13, 23, 55), END),
-                new IntervalEndpoint(LocalTime.of(13, 58, 10), START),
-                new IntervalEndpoint(LocalTime.of(14, 2, 1), END)
-        );
-        given(timeIntervalDataProcessor.processDataFile(FILEPATH)).willReturn(endpoints);
+        List<TimeInterval> expected = List.of(new TimeInterval(LocalTime.of(13, 13, 0), LocalTime.of(13, 23, 55)),
+                                              new TimeInterval(LocalTime.of(13, 58, 10), LocalTime.of(14, 2, 1)));
+        List<IntervalEndpoint> endpoints = List.of(new IntervalEndpoint(LocalTime.of(13, 13, 0), START),
+                                                   new IntervalEndpoint(LocalTime.of(13, 23, 55), END),
+                                                   new IntervalEndpoint(LocalTime.of(13, 58, 10), START),
+                                                   new IntervalEndpoint(LocalTime.of(14, 2, 1), END));
+        given(timeIntervalDataProcessor.processDataFile(FILE_PATH)).willReturn(endpoints);
 
         // WHEN
-        List<TimeInterval> actual = underTest.findPeakRanges(FILEPATH);
+        List<TimeInterval> actual = underTest.findPeakRanges(FILE_PATH);
 
         // THEN
-        then(timeIntervalDataProcessor).should().processDataFile(FILEPATH);
         assertEquals(expected, actual);
     }
 }
