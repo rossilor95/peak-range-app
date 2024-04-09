@@ -1,4 +1,4 @@
-package com.github.rossilor95.peakintervalfinder;
+package com.github.rossilor95.peakrangeapp;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static com.github.rossilor95.peakintervalfinder.IntervalEndpoint.Type.START;
+import static com.github.rossilor95.peakrangeapp.IntervalEndpoint.Type.START;
 
 public class PeakRangeApp {
     private static final Logger LOG = Logger.getLogger(PeakRangeApp.class.getName());
@@ -25,12 +25,12 @@ public class PeakRangeApp {
 
         final TimeIntervalDataProcessor timeIntervalDataProcessor = new TimeIntervalDataProcessor();
         final PeakRangeApp peakRangeApp = new PeakRangeApp(timeIntervalDataProcessor);
-        List<TimeInterval> peakIntervals = peakRangeApp.findPeakIntervals(filePath);
+        List<TimeInterval> peakIntervals = peakRangeApp.findPeakRanges(filePath);
 
         LOG.log(Level.INFO, "Peak Interval(s) found: " + peakIntervals.toString());
     }
 
-    public List<TimeInterval> findPeakIntervals(String filePath) throws IOException {
+    public List<TimeInterval> findPeakRanges(String filePath) throws IOException {
         List<IntervalEndpoint> endpoints = timeIntervalDataProcessor.processDataFile(filePath);
         int[] eventCount = findEventCount(endpoints);
         int maxEventCount = Arrays.stream(eventCount)
@@ -38,7 +38,7 @@ public class PeakRangeApp {
                 .orElseThrow(() -> new RuntimeException("No max event count found"));
         LOG.log(Level.INFO, "Max event count: " + maxEventCount);
         List<Integer> maxIndices = findMaxIndices(eventCount, maxEventCount);
-        return findPeakIntervals(endpoints, maxIndices);
+        return findPeakRanges(endpoints, maxIndices);
     }
 
     private int[] findEventCount(List<IntervalEndpoint> endpoints) {
@@ -63,11 +63,11 @@ public class PeakRangeApp {
         return maxIndices;
     }
 
-    private List<TimeInterval> findPeakIntervals(List<IntervalEndpoint> endpoints, List<Integer> maxIndices) {
+    private List<TimeInterval> findPeakRanges(List<IntervalEndpoint> endpoints, List<Integer> maxIndices) {
         List<TimeInterval> peakIntervals = new ArrayList<>();
         for (int index : maxIndices) {
-            TimeInterval peakInterval = new TimeInterval(endpoints.get(index).time(), endpoints.get(index + 1).time());
-            peakIntervals.add(peakInterval);
+            TimeInterval peakRange = new TimeInterval(endpoints.get(index).time(), endpoints.get(index + 1).time());
+            peakIntervals.add(peakRange);
         }
         return peakIntervals;
     }

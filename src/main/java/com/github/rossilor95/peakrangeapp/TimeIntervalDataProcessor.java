@@ -1,4 +1,4 @@
-package com.github.rossilor95.peakintervalfinder;
+package com.github.rossilor95.peakrangeapp;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static com.github.rossilor95.peakintervalfinder.IntervalEndpoint.Type.END;
-import static com.github.rossilor95.peakintervalfinder.IntervalEndpoint.Type.START;
+import static com.github.rossilor95.peakrangeapp.IntervalEndpoint.Type.END;
+import static com.github.rossilor95.peakrangeapp.IntervalEndpoint.Type.START;
 
 /**
  * Utility class for processing time interval data files.

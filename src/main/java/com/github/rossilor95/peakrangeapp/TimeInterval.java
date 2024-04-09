@@ -1,4 +1,4 @@
-package com.github.rossilor95.peakintervalfinder;
+package com.github.rossilor95.peakrangeapp;
 
 import java.time.LocalTime;
 

@@ -1,4 +1,4 @@
-package com.github.rossilor95.peakintervalfinder;
+package com.github.rossilor95.peakrangeapp;
 
 import java.io.IOException;
 import java.time.LocalTime;
@@ -10,8 +10,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static com.github.rossilor95.peakintervalfinder.IntervalEndpoint.Type.END;
-import static com.github.rossilor95.peakintervalfinder.IntervalEndpoint.Type.START;
+import static com.github.rossilor95.peakrangeapp.IntervalEndpoint.Type.END;
+import static com.github.rossilor95.peakrangeapp.IntervalEndpoint.Type.START;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
@@ -42,7 +42,7 @@ class PeakRangeAppTest {
         given(timeIntervalDataProcessor.processDataFile(FILEPATH)).willReturn(endpoints);
 
         // WHEN
-        List<TimeInterval> actual = underTest.findPeakIntervals(FILEPATH);
+        List<TimeInterval> actual = underTest.findPeakRanges(FILEPATH);
 
         // THEN
         then(timeIntervalDataProcessor).should().processDataFile(FILEPATH);
