@@ -7,7 +7,6 @@ This application solves a famous algorithmic problem in a naive but (in my opini
 - https://stackoverflow.com/questions/2244964/finding-number-of-overlaps-in-a-list-of-time-ranges
 
 
-
 ## Problem statement
 Let us suppose we have the following problem:
 
@@ -33,7 +32,6 @@ The scientists want to write an application that can find the time range with th
 *. 
 
 This is when the **Peak Range App** comes into play!
-
 
 
 ## Algorithm Explanation
