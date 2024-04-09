@@ -17,14 +17,14 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 
 @ExtendWith(MockitoExtension.class)
-class PeakIntervalFinderTest {
+class PeakRangeAppTest {
     private static final String FILEPATH = "test_filepath";
 
     @Mock
     private TimeIntervalDataProcessor timeIntervalDataProcessor;
 
     @InjectMocks
-    private PeakIntervalFinder underTest;
+    private PeakRangeApp underTest;
 
     @Test
     void shouldFindMultiplePeakIntervalsWhenPresentInData() throws IOException {

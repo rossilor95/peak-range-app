@@ -9,11 +9,11 @@ import java.util.logging.Logger;
 
 import static com.github.rossilor95.peakintervalfinder.IntervalEndpoint.Type.START;
 
-public class PeakIntervalFinder {
-    private static final Logger LOG = Logger.getLogger(PeakIntervalFinder.class.getName());
+public class PeakRangeApp {
+    private static final Logger LOG = Logger.getLogger(PeakRangeApp.class.getName());
     private final TimeIntervalDataProcessor timeIntervalDataProcessor;
 
-    PeakIntervalFinder(TimeIntervalDataProcessor timeIntervalDataProcessor) {
+    PeakRangeApp(TimeIntervalDataProcessor timeIntervalDataProcessor) {
         this.timeIntervalDataProcessor = timeIntervalDataProcessor;
     }
 
@@ -24,8 +24,8 @@ public class PeakIntervalFinder {
         String filePath = args[0];
 
         final TimeIntervalDataProcessor timeIntervalDataProcessor = new TimeIntervalDataProcessor();
-        final PeakIntervalFinder peakIntervalFinder = new PeakIntervalFinder(timeIntervalDataProcessor);
-        List<TimeInterval> peakIntervals = peakIntervalFinder.findPeakIntervals(filePath);
+        final PeakRangeApp peakRangeApp = new PeakRangeApp(timeIntervalDataProcessor);
+        List<TimeInterval> peakIntervals = peakRangeApp.findPeakIntervals(filePath);
 
         LOG.log(Level.INFO, "Peak Interval(s) found: " + peakIntervals.toString());
     }
