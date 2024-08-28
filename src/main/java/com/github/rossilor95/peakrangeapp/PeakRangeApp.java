@@ -25,12 +25,12 @@ public class PeakRangeApp {
 
         final TimeIntervalDataProcessor timeIntervalDataProcessor = new TimeIntervalDataProcessor();
         final PeakRangeApp peakRangeApp = new PeakRangeApp(timeIntervalDataProcessor);
-        List<TimeInterval> peakIntervals = peakRangeApp.findPeakRanges(filePath);
+        List<TimeRange> peakIntervals = peakRangeApp.findPeakRanges(filePath);
 
         LOG.log(Level.INFO, "Peak Interval(s) found: " + peakIntervals.toString());
     }
 
-    public List<TimeInterval> findPeakRanges(String filePath) throws IOException {
+    public List<TimeRange> findPeakRanges(String filePath) throws IOException {
         List<IntervalEndpoint> endpoints = timeIntervalDataProcessor.processDataFile(filePath);
         int[] eventCount = findEventCount(endpoints);
         int maxEventCount = Arrays.stream(eventCount)
@@ -63,12 +63,12 @@ public class PeakRangeApp {
         return maxIndices;
     }
 
-    private List<TimeInterval> findPeakRanges(List<IntervalEndpoint> endpoints, List<Integer> maxIndices) {
-        List<TimeInterval> peakIntervals = new ArrayList<>();
+    private List<TimeRange> findPeakRanges(List<IntervalEndpoint> endpoints, List<Integer> maxIndices) {
+        List<TimeRange> peakRanges = new ArrayList<>();
         for (int index : maxIndices) {
-            TimeInterval peakRange = new TimeInterval(endpoints.get(index).time(), endpoints.get(index + 1).time());
-            peakIntervals.add(peakRange);
+            TimeRange peakRange = new TimeRange(endpoints.get(index).time(), endpoints.get(index + 1).time());
+            peakRanges.add(peakRange);
         }
-        return peakIntervals;
+        return peakRanges;
     }
 }
