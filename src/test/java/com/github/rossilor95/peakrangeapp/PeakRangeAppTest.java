@@ -24,9 +24,9 @@ class PeakRangeAppTest {
     @InjectMocks private PeakRangeApp underTest;
 
     @Test
-    void shouldFindSinglePeakIntervalWhenPresentInData() throws IOException {
+    void shouldFindSinglePeakRangeWhenPresentInData() throws IOException {
         // GIVEN
-        List<TimeInterval> expected = List.of(new TimeInterval(LocalTime.of(5, 20, 40), LocalTime.of(5, 48, 32)));
+        List<TimeRange> expected = List.of(new TimeRange(LocalTime.of(5, 20, 40), LocalTime.of(5, 48, 32)));
         List<IntervalEndpoint> endpoints = List.of(new IntervalEndpoint(LocalTime.of(5, 7, 16), START),
                                                    new IntervalEndpoint(LocalTime.of(5, 13, 29), START),
                                                    new IntervalEndpoint(LocalTime.of(5, 20, 40), START),
@@ -36,17 +36,17 @@ class PeakRangeAppTest {
         given(timeIntervalDataProcessor.processDataFile(FILE_PATH)).willReturn(endpoints);
 
         // WHEN
-        List<TimeInterval> actual = underTest.findPeakRanges(FILE_PATH);
+        List<TimeRange> actual = underTest.findPeakRanges(FILE_PATH);
 
         // THEN
         assertEquals(expected, actual);
     }
 
     @Test
-    void shouldFindMultiplePeakIntervalsWhenPresentInData() throws IOException {
+    void shouldFindMultiplePeakRangesWhenPresentInData() throws IOException {
         // GIVEN
-        List<TimeInterval> expected = List.of(new TimeInterval(LocalTime.of(13, 13, 0), LocalTime.of(13, 23, 55)),
-                                              new TimeInterval(LocalTime.of(13, 58, 10), LocalTime.of(14, 2, 1)));
+        List<TimeRange> expected = List.of(new TimeRange(LocalTime.of(13, 13, 0), LocalTime.of(13, 23, 55)),
+                                              new TimeRange(LocalTime.of(13, 58, 10), LocalTime.of(14, 2, 1)));
         List<IntervalEndpoint> endpoints = List.of(new IntervalEndpoint(LocalTime.of(13, 13, 0), START),
                                                    new IntervalEndpoint(LocalTime.of(13, 23, 55), END),
                                                    new IntervalEndpoint(LocalTime.of(13, 58, 10), START),
@@ -54,7 +54,7 @@ class PeakRangeAppTest {
         given(timeIntervalDataProcessor.processDataFile(FILE_PATH)).willReturn(endpoints);
 
         // WHEN
-        List<TimeInterval> actual = underTest.findPeakRanges(FILE_PATH);
+        List<TimeRange> actual = underTest.findPeakRanges(FILE_PATH);
 
         // THEN
         assertEquals(expected, actual);
