@@ -15,8 +15,8 @@ repositories {
     mavenCentral()
 }
 
-val jUnitVersion = "5.12.2"
-val mockitoVersion = "5.17.0"
+val jUnitVersion = "5.13.2"
+val mockitoVersion = "5.18.0"
 
 dependencies {
     testImplementation(platform("org.junit:junit-bom:$jUnitVersion"))
@@ -32,7 +32,7 @@ application {
 
 tasks.jar {
     manifest.attributes(
-        "Main-Class" to "com.github.rossilor95.peakintervalfinder.PeakIntervalFinder"
+        "Main-Class" to "com.github.rossilor95.peakrangeapp.PeakRangeApp"
     )
 }
 
