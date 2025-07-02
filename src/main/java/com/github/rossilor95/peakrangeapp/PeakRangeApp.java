@@ -25,9 +25,9 @@ public class PeakRangeApp {
 
         final TimeIntervalDataProcessor timeIntervalDataProcessor = new TimeIntervalDataProcessor();
         final PeakRangeApp peakRangeApp = new PeakRangeApp(timeIntervalDataProcessor);
-        List<TimeRange> peakIntervals = peakRangeApp.findPeakRanges(filePath);
+        List<TimeRange> peakRanges = peakRangeApp.findPeakRanges(filePath);
 
-        LOG.log(Level.INFO, "Peak Interval(s) found: " + peakIntervals.toString());
+        LOG.log(Level.INFO, "Peak Range(s) found: " + peakRanges.toString());
     }
 
     public List<TimeRange> findPeakRanges(String filePath) throws IOException {
